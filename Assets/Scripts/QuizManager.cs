@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class QuizManager : MonoBehaviour
 {
@@ -12,15 +13,26 @@ public class QuizManager : MonoBehaviour
 
     public GameObject QuizPanel;
     public GameObject GOPanel;
+    public GameObject HintPanel;
 
     public TMP_Text QuestionTxt;
     public TMP_Text ScoreTxt;
 
     int totalQuestions = 0;
     public int score;
+    public float TimeBetweenQuestions = 0.5f;
+
+    public HintScript hintScript;
+    public SaveObject saveObject;
+
+    public TextMeshProUGUI HighScoreCounter;
 
     private void Start()
     {
+        if (saveObject == null)
+            saveObject = FindObjectOfType<SaveObject>();
+
+        HighScoreCounter.text = saveObject.SavedScore.ToString();
         totalQuestions = QnA.Count;
         GOPanel.SetActive(false);
         generateQuestion();
@@ -30,7 +42,13 @@ public class QuizManager : MonoBehaviour
     {
         QuizPanel.SetActive(false);
         GOPanel.SetActive(true);
+        HintPanel.SetActive(false);
+
+    
         ScoreTxt.text = score + "/" + totalQuestions;
+
+        saveObject.Save(saveObject.SaveFileName);
+        HighScoreCounter.text = saveObject.SavedScore.ToString();
     }
 
     public void Retry()
@@ -42,13 +60,21 @@ public class QuizManager : MonoBehaviour
     {
         score += 1;
         QnA.RemoveAt(currentQuestion);
+        StartCoroutine(GenerateQuestionsCoRoutine());
+    }
+
+    IEnumerator GenerateQuestionsCoRoutine()
+    {
+
+        yield return new WaitForSeconds(TimeBetweenQuestions);
         generateQuestion();
+
     }
 
     public void Wrong()
     {
         QnA.RemoveAt(currentQuestion);
-        generateQuestion();
+        StartCoroutine(GenerateQuestionsCoRoutine());
     }
     void SetAnswers()
     {
@@ -56,6 +82,7 @@ public class QuizManager : MonoBehaviour
         {
             options[i].GetComponent<AnswerScript>().IsCorrect = false;
             options[i].transform.GetChild(0).GetComponent<TMP_Text>().text = QnA[currentQuestion].Answers[i];
+            options[i].GetComponent<Image>().color = options[i].GetComponent<AnswerScript>().startColor;
 
             if (QnA[currentQuestion].CorrectAnswer == i+1)
             {

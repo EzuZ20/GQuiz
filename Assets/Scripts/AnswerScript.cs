@@ -10,6 +10,11 @@ public class AnswerScript : MonoBehaviour
 
     public Color startColor;
 
+    private void Awake()
+    {
+        startColor = GetComponent<Image>().color;
+    }
+
     private void Start()
     {
         startColor = GetComponent<Image>().color;
@@ -28,5 +33,8 @@ public class AnswerScript : MonoBehaviour
             Debug.Log("Incorrect Answer");
             quizManager.Wrong();
         }
+
+        quizManager.hintScript.CloseConfirmWindow();
+        quizManager.hintScript.ResetHintButton();
     }
 }
