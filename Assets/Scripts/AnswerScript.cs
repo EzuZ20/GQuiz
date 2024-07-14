@@ -10,6 +10,8 @@ public class AnswerScript : MonoBehaviour
 
     public Color startColor;
 
+    public Image FlagImage;
+
     private void Awake()
     {
         startColor = GetComponent<Image>().color;

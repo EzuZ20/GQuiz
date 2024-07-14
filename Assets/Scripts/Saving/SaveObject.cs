@@ -40,7 +40,7 @@ public class SaveObject : MonoBehaviour, Saveable
             //This tells unity not to delete the object when you load another scene
             DontDestroyOnLoad(gameObject);
             Instance = this;
-            SceneManager.sceneLoaded += OnSceneLoaded;
+            //SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -48,8 +48,6 @@ public class SaveObject : MonoBehaviour, Saveable
             return;
         }
 
-
-        Load(SaveFileName);
     }
 
     // Start is called before the first frame update
@@ -91,6 +89,8 @@ public class SaveObject : MonoBehaviour, Saveable
             quizManager = FindObjectOfType<QuizManager>();
 
         SavedScore = (int)formatter.Deserialize(stream);
+
+        quizManager.HighScoreCounter.text = SavedScore.ToString();
 
         //DebugUtils.Log("Level Id: {0}", LevelID);
 
@@ -202,29 +202,6 @@ public class SaveObject : MonoBehaviour, Saveable
         //Version number
         int versionNumber = (int)m_LoadGameFormatter.Deserialize(m_LoadGameStream);
 
-
-
-    }
-
-
-
-    //A helper function to create the save path.  This uses the persistentDataPath, which will be a safe place
-    //to store data on a user's machine without errors.
-    string GetSaveFilePath(string fileName)
-    {
-        return Application.persistentDataPath + "/" + fileName;
-    }
-
-    //This callback gets called when a scene is done loading
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-         Load(SaveFileName);
-        //This section will finish loading the save game.  We need to load the objects here since
-
-        if (m_LoadGameFormatter == null)
-            return;
-
-        //Get number of objects to load  //continue loading from stream of open file
         int numObjectsToLoad = (int)m_LoadGameFormatter.Deserialize(m_LoadGameStream);
 
         //Load objects Stage 1.  The objects are loaded in two stages so that
@@ -255,7 +232,55 @@ public class SaveObject : MonoBehaviour, Saveable
         m_LoadGameStream.Close();
         m_LoadGameStream = null;
         m_LoadGameFormatter = null;
+
     }
+
+
+
+    //A helper function to create the save path.  This uses the persistentDataPath, which will be a safe place
+    //to store data on a user's machine without errors.
+    string GetSaveFilePath(string fileName)
+    {
+        return Application.persistentDataPath + "/" + fileName;
+    }
+
+    //This callback gets called when a scene is done loading
+    //void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    //{
+    //    //This section will finish loading the save game.  We need to load the objects here since
+
+    //    //Get number of objects to load  //continue loading from stream of open file
+    //    int numObjectsToLoad = (int)m_LoadGameFormatter.Deserialize(m_LoadGameStream);
+
+    //    //Load objects Stage 1.  The objects are loaded in two stages so that
+    //    //by the time the second stage is running all of the objects will exist which
+    //    //will make reconstructing relationships between everything easier
+    //    List<GameObject> gameObjectsLoaded = new List<GameObject>();
+    //    for (int i = 0; i < numObjectsToLoad; ++i)
+    //    {
+    //        GameObject loadedObject = SaveHandler.LoadObject(m_LoadGameStream, m_LoadGameFormatter);
+
+    //        if (loadedObject != null)
+    //        {
+    //            gameObjectsLoaded.Add(loadedObject);
+    //        }
+    //    }
+
+    //    //Load objects Stage 2
+    //    for (int i = 0; i < numObjectsToLoad; ++i)
+    //    {
+    //        GameObject loadedObject = gameObjectsLoaded[i];
+
+    //        SaveHandler saveHandler = loadedObject.GetComponent<SaveHandler>();
+
+    //        saveHandler.LoadData(m_LoadGameStream, m_LoadGameFormatter);
+    //    }
+
+    //    //Clean up
+    //    m_LoadGameStream.Close();
+    //    m_LoadGameStream = null;
+    //    m_LoadGameFormatter = null;
+    //}
 
 
 

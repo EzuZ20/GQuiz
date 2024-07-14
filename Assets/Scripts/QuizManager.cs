@@ -15,7 +15,7 @@ public class QuizManager : MonoBehaviour
     public GameObject GOPanel;
     public GameObject HintPanel;
 
-    public TMP_Text QuestionTxt;
+    public Image QuestionImage;
     public TMP_Text ScoreTxt;
 
     int totalQuestions = 0;
@@ -36,6 +36,7 @@ public class QuizManager : MonoBehaviour
         totalQuestions = QnA.Count;
         GOPanel.SetActive(false);
         generateQuestion();
+        saveObject.Load(saveObject.SaveFileName);
     }
 
     public void GameOver()
@@ -81,9 +82,24 @@ public class QuizManager : MonoBehaviour
         for (int i = 0; i < options.Length; i++) 
         {
             options[i].GetComponent<AnswerScript>().IsCorrect = false;
-            options[i].transform.GetChild(0).GetComponent<TMP_Text>().text = QnA[currentQuestion].Answers[i];
             options[i].GetComponent<Image>().color = options[i].GetComponent<AnswerScript>().startColor;
 
+
+            if (QnA[currentQuestion].FlagQuestion == false)
+            {
+                options[i].transform.GetChild(1).GetComponent<TMP_Text>().text = QnA[currentQuestion].Answers[i];
+                options[i].GetComponent<AnswerScript>().FlagImage.enabled = false;
+
+            }
+            else
+            {
+                options[i].transform.GetChild(1).GetComponent<TMP_Text>().text = "";
+                options[i].GetComponent<AnswerScript>().FlagImage.enabled = true;
+                options[i].GetComponent<AnswerScript>().FlagImage.sprite = QnA[currentQuestion].AnswerFlags[i];
+
+            }
+            
+            
             if (QnA[currentQuestion].CorrectAnswer == i+1)
             {
                 options[i].GetComponent <AnswerScript>().IsCorrect = true;
@@ -97,7 +113,7 @@ public class QuizManager : MonoBehaviour
         {
             currentQuestion = Random.Range(0, QnA.Count);
 
-            QuestionTxt.text = QnA[currentQuestion].Question;
+            QuestionImage.sprite = QnA[currentQuestion].Question;
             SetAnswers();
         }
         else
