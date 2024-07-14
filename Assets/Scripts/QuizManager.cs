@@ -32,7 +32,8 @@ public class QuizManager : MonoBehaviour
         if (saveObject == null)
             saveObject = FindObjectOfType<SaveObject>();
 
-        HighScoreCounter.text = saveObject.SavedScore.ToString();
+        //HighScoreCounter.text = saveObject.SavedScore.ToString();
+        HighScoreCounter.text = score.ToString();
         totalQuestions = QnA.Count;
         GOPanel.SetActive(false);
         generateQuestion();
@@ -49,7 +50,7 @@ public class QuizManager : MonoBehaviour
         ScoreTxt.text = score + "/" + totalQuestions;
 
         saveObject.Save(saveObject.SaveFileName);
-        HighScoreCounter.text = saveObject.SavedScore.ToString();
+        //HighScoreCounter.text = saveObject.SavedScore.ToString();
     }
 
     public void Retry()
@@ -60,6 +61,7 @@ public class QuizManager : MonoBehaviour
     public void Correct()
     {
         score += 1;
+        HighScoreCounter.text = score.ToString();
         QnA.RemoveAt(currentQuestion);
         StartCoroutine(GenerateQuestionsCoRoutine());
     }
@@ -72,10 +74,20 @@ public class QuizManager : MonoBehaviour
 
     }
 
+    IEnumerator LoseCoRoutine()
+    {
+
+        yield return new WaitForSeconds(TimeBetweenQuestions);
+        GameOver();
+
+    }
+
     public void Wrong()
     {
+        options[QnA[currentQuestion].CorrectAnswer - 1].GetComponent<Image>().color = Color.green;
         QnA.RemoveAt(currentQuestion);
-        StartCoroutine(GenerateQuestionsCoRoutine());
+        //StartCoroutine(GenerateQuestionsCoRoutine());
+        StartCoroutine(LoseCoRoutine());
     }
     void SetAnswers()
     {

@@ -13,12 +13,19 @@ public class HintScript : MonoBehaviour
     public Button UseHintButton;
     public TextMeshProUGUI UseHintButtonText;
     string HintButtonStartText;
+
+    private void Awake()
+    {
+        HintButtonStartText = "Watch ad for hint!";
+        UseHintButtonText.text = HintButtonStartText;
+    }
     void Start()
     {   
         if(quizManager == null)
             quizManager = FindObjectOfType<QuizManager>();
 
         HintButtonStartText = "Watch ad for hint!";
+        UseHintButtonText.text = HintButtonStartText;
 
     }
 

@@ -8,7 +8,7 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener, IU
     [SerializeField] string AndriodGameId;
     [SerializeField] string IOSGameId;
     string GameId;
-    [SerializeField] bool TestMode = false;
+    [SerializeField] bool TestMode = true;
 
     [SerializeField] string AndriodInterstitialId;
     [SerializeField] string IOSInterstitialId;
@@ -24,7 +24,6 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener, IU
 
     static AdsInitializer Instance;
 
-    public HintScript hintScript;
 
     public void Awake()
     {
@@ -56,7 +55,6 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener, IU
     public void OnInitializationFailed(UnityAdsInitializationError error, string message)
     {
         Debug.Log("Unity Ads initialization failed.");
-        hintScript.GenerateHint();
     }
 
     public void LoadInerstitialAd()
@@ -86,7 +84,6 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener, IU
 
     public void ShowRewardedAd()
     {
-        hintScript.GenerateHint();
         RewardId = (Application.platform == RuntimePlatform.IPhonePlayer) ? IOSRewardedId : AndriodRewardedId;
         Advertisement.Show(RewardId, this);
 
@@ -107,12 +104,10 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener, IU
     public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
     {
         Debug.Log($"Error Loading Ad Unit {placementId}: {error.ToString()} - {message}");
-        hintScript.GenerateHint();
     }
 
     public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
     {
-        hintScript.GenerateHint();
         Debug.Log($"Error showing Ad Unit {placementId}: {error.ToString()} - {message}");
     }
 
@@ -137,7 +132,7 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener, IU
 
         if(placementId.Equals(RewardId) && UnityAdsShowCompletionState.COMPLETED.Equals(showCompletionState))
         {
-            hintScript.GenerateHint();
+            //hintScript.GenerateHint();
         }
     
 
@@ -145,17 +140,19 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener, IU
 
     public void Start()
     {
-        if (Instance == null)
-        {
-            //This tells unity not to delete the object when you load another scene
-            DontDestroyOnLoad(gameObject);
-            Instance = this;
-            InitializeAds();
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
+        //if (Instance == null)
+        //{
+        //    //This tells unity not to delete the object when you load another scene
+        //    DontDestroyOnLoad(gameObject);
+        //    Instance = this;
+        //    InitializeAds();
+        //}
+        //else
+        //{
+        //    Destroy(gameObject);
+        //    return;
+        //}
+
+        InitializeAds();
     }
 }

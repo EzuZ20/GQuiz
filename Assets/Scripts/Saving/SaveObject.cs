@@ -90,7 +90,7 @@ public class SaveObject : MonoBehaviour, Saveable
 
         SavedScore = (int)formatter.Deserialize(stream);
 
-        quizManager.HighScoreCounter.text = SavedScore.ToString();
+        //quizManager.HighScoreCounter.text = SavedScore.ToString();
 
         //DebugUtils.Log("Level Id: {0}", LevelID);
 
