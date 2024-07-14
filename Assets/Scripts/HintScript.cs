@@ -18,8 +18,8 @@ public class HintScript : MonoBehaviour
         if(quizManager == null)
             quizManager = FindObjectOfType<QuizManager>();
 
-        HintButtonStartText = UseHintButtonText.text;
-        
+        HintButtonStartText = "Watch ad for hint!";
+
     }
 
     // Update is called once per frame
