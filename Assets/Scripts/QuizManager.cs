@@ -123,4 +123,12 @@ public class QuizManager : MonoBehaviour
         }
 
     }
+
+    public void Update()
+    {
+        if(Input.GetKey(KeyCode.Escape)) 
+        {
+            Application.Quit();
+        }
+    }
 }

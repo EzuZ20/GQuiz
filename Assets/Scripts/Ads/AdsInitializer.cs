@@ -8,7 +8,7 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener, IU
     [SerializeField] string AndriodGameId;
     [SerializeField] string IOSGameId;
     string GameId;
-    [SerializeField] bool TestMode = true;
+    [SerializeField] bool TestMode = false;
 
     [SerializeField] string AndriodInterstitialId;
     [SerializeField] string IOSInterstitialId;
@@ -56,7 +56,7 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener, IU
     public void OnInitializationFailed(UnityAdsInitializationError error, string message)
     {
         Debug.Log("Unity Ads initialization failed.");
-
+        hintScript.GenerateHint();
     }
 
     public void LoadInerstitialAd()
@@ -86,8 +86,10 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener, IU
 
     public void ShowRewardedAd()
     {
+        hintScript.GenerateHint();
         RewardId = (Application.platform == RuntimePlatform.IPhonePlayer) ? IOSRewardedId : AndriodRewardedId;
         Advertisement.Show(RewardId, this);
+
 
     }
 
@@ -105,11 +107,12 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener, IU
     public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
     {
         Debug.Log($"Error Loading Ad Unit {placementId}: {error.ToString()} - {message}");
-
+        hintScript.GenerateHint();
     }
 
     public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
     {
+        hintScript.GenerateHint();
         Debug.Log($"Error showing Ad Unit {placementId}: {error.ToString()} - {message}");
     }
 
