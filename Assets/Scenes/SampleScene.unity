@@ -811,8 +811,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.7459, y: -26.8334}
-  m_SizeDelta: {x: 1837.6729, y: 1926.5645}
+  m_AnchoredPosition: {x: 33.3923, y: -23.0269}
+  m_SizeDelta: {x: 1890.9658, y: 2786.8628}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &221050758
 MonoBehaviour:
@@ -3538,6 +3538,10 @@ MonoBehaviour:
   QuizPanel: {fileID: 1885641270}
   GOPanel: {fileID: 2067163197}
   HintPanel: {fileID: 1282960952}
+  InGameObjects:
+  - {fileID: 1315807263}
+  - {fileID: 93746844}
+  - {fileID: 1955015041}
   QuestionImage: {fileID: 1886725065}
   ScoreTxt: {fileID: 39338177}
   score: 0
@@ -4271,7 +4275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &461118070
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6074,8 +6078,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.0302, y: -78.4871}
-  m_SizeDelta: {x: 1908, y: 1972.4785}
+  m_AnchoredPosition: {x: 64.489044, y: -101.326996}
+  m_SizeDelta: {x: 2045.0386, y: 2931.749}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &893722941
 MonoBehaviour:
@@ -8474,8 +8478,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000015616, y: -35.598}
-  m_SizeDelta: {x: 1918.0227, y: 1128.8035}
+  m_AnchoredPosition: {x: -10.5322, y: 30.6043}
+  m_SizeDelta: {x: 1896.9583, y: 1261.208}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1606381762
 MonoBehaviour:
