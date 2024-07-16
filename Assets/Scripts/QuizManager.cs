@@ -15,6 +15,7 @@ public class QuizManager : MonoBehaviour
     public GameObject GOPanel;
     public GameObject HintPanel;
 
+    public GameObject[] InGameObjects;
     public Image QuestionImage;
     public TMP_Text ScoreTxt;
 
@@ -45,8 +46,11 @@ public class QuizManager : MonoBehaviour
         QuizPanel.SetActive(false);
         GOPanel.SetActive(true);
         HintPanel.SetActive(false);
+        for (int i = 0; i < InGameObjects.Length; i++)
+        {
+            InGameObjects[i].SetActive(false);
+        }
 
-    
         ScoreTxt.text = score + "/" + totalQuestions;
 
         saveObject.Save(saveObject.SaveFileName);

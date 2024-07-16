@@ -36,13 +36,16 @@ public class MainMenu : MonoBehaviour
     {
         menu.SetActive(false);
 
-        for(int i = 0; i < InGameObjects.Length; i++)
+        HideInGameObjects();
+        NameOfGame.SetActive(false );
+    }
+    public void HideInGameObjects()
+    {
+        for (int i = 0; i < InGameObjects.Length; i++)
         {
             InGameObjects[i].SetActive(true);
         }
-        NameOfGame.SetActive(false );
     }
-
     public void ShowHighScore()
     {
         highscore.SetActive(true);
