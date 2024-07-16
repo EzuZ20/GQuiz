@@ -8,7 +8,8 @@ public class MainMenu : MonoBehaviour
     public GameObject menu;
     public GameObject highscore;
     public GameObject credits;
-
+    public GameObject[] InGameObjects;
+    public GameObject NameOfGame;
     public TextMeshProUGUI HighScoreMenuText;
 
     public QuizManager quizManager;
@@ -22,6 +23,7 @@ public class MainMenu : MonoBehaviour
 
         if(saveObject == null)
             saveObject = FindObjectOfType<SaveObject>();
+        menu.SetActive(true);
     }
 
     // Update is called once per frame
@@ -33,6 +35,12 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         menu.SetActive(false);
+
+        for(int i = 0; i < InGameObjects.Length; i++)
+        {
+            InGameObjects[i].SetActive(true);
+        }
+        NameOfGame.SetActive(false );
     }
 
     public void ShowHighScore()
@@ -43,11 +51,13 @@ public class MainMenu : MonoBehaviour
             saveObject = FindObjectOfType<SaveObject>();
 
         HighScoreMenuText.text = saveObject.SavedScore.ToString();
+        NameOfGame.SetActive(false);
     }
 
     public void HighScoreToMenu()
     {
         highscore.SetActive(false);
+        NameOfGame.SetActive(true);
     }
 
     public void ShowCredits()
@@ -58,5 +68,6 @@ public class MainMenu : MonoBehaviour
     public void CreditsToMain()
     {
         credits.SetActive(false);
+        NameOfGame.SetActive(true);
     }
 }
