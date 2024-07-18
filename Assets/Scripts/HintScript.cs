@@ -61,7 +61,8 @@ public class HintScript : MonoBehaviour
 
     public void ResetHintButton()
     {
-        UseHintButtonText.text = HintButtonStartText;
-        UseHintButton.interactable = true;
+        GenerateHint();
+        UseHintButtonText.text = Hint;
+        UseHintButton.interactable = false;
     }
 }
