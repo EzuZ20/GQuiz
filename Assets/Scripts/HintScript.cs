@@ -24,6 +24,7 @@ public class HintScript : MonoBehaviour
         if (quizManager == null)
             quizManager = FindObjectOfType<QuizManager>();
 
+
         //HintButtonStartText = "Watch ad for hint!";
         //UseHintButtonText.text = HintButtonStartText;
     }
