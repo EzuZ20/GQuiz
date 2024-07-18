@@ -12,15 +12,12 @@ public class HintScript : MonoBehaviour
     public QuizManager quizManager;
     public Button UseHintButton;
     public TextMeshProUGUI UseHintButtonText;
-    string HintButtonStartText;
+    //string HintButtonStartText;
 
     private void Awake()
     {
     //    HintButtonStartText = "Watch ad for hint!";
     //    UseHintButtonText.text = HintButtonStartText;
-        //GenerateHint();
-        //HintButtonStartText = Hint;
-        //UseHintButtonText.text = Hint;
     }
     void Start()
     {
@@ -29,9 +26,6 @@ public class HintScript : MonoBehaviour
 
         //HintButtonStartText = "Watch ad for hint!";
         //UseHintButtonText.text = HintButtonStartText;
-        //GenerateHint();
-        //HintButtonStartText = Hint;
-        //UseHintButtonText.text = Hint;
     }
 
     // Update is called once per frame
