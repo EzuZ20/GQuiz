@@ -16,22 +16,22 @@ public class HintScript : MonoBehaviour
 
     private void Awake()
     {
-        //  HintButtonStartText = "Watch ad for hint!";
-        //UseHintButtonText.text = HintButtonStartText;
-        GenerateHint();
-        HintButtonStartText = Hint;
-        UseHintButtonText.text = Hint;
+    //    HintButtonStartText = "Watch ad for hint!";
+    //    UseHintButtonText.text = HintButtonStartText;
+        //GenerateHint();
+        //HintButtonStartText = Hint;
+        //UseHintButtonText.text = Hint;
     }
     void Start()
     {
         if (quizManager == null)
             quizManager = FindObjectOfType<QuizManager>();
 
-        // HintButtonStartText = "Watch ad for hint!";
+        //HintButtonStartText = "Watch ad for hint!";
         //UseHintButtonText.text = HintButtonStartText;
-        GenerateHint();
-        HintButtonStartText = Hint;
-        UseHintButtonText.text = Hint;
+        //GenerateHint();
+        //HintButtonStartText = Hint;
+        //UseHintButtonText.text = Hint;
     }
 
     // Update is called once per frame
