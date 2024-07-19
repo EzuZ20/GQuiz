@@ -3440,6 +3440,22 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9220210906584943407, guid: 5daa83ec352a7df478aa17228c178e8b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 192.3354
+      objectReference: {fileID: 0}
+    - target: {fileID: 9220210906584943407, guid: 5daa83ec352a7df478aa17228c178e8b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 81.9797
+      objectReference: {fileID: 0}
+    - target: {fileID: 9220210906584943407, guid: 5daa83ec352a7df478aa17228c178e8b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 46.168
+      objectReference: {fileID: 0}
+    - target: {fileID: 9220210906584943407, guid: 5daa83ec352a7df478aa17228c178e8b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1028
+      objectReference: {fileID: 0}
     - target: {fileID: 9220210906603661762, guid: 5daa83ec352a7df478aa17228c178e8b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -4110,7 +4126,7 @@ PrefabInstance:
       objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 9220210908256985113, guid: 5daa83ec352a7df478aa17228c178e8b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9220210908280260532, guid: 5daa83ec352a7df478aa17228c178e8b, type: 3}
       propertyPath: m_fontSize
